@@ -12,11 +12,11 @@ app.get('', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'home.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'views', 'home.html'));
 });
 
 app.get('/chat/:id', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'chat.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'views', 'chat.html'));
 });
 
 const server = app.listen(port, () => {
@@ -26,7 +26,7 @@ const server = app.listen(port, () => {
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    console.log('Se conecto al cliente');
+    //console.log('Se conecto al cliente');
 
     socket.on('joinRoom', (id) => {
         socket.join('room-' + id)

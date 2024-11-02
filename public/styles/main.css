@@ -3,3 +3,11 @@ html {
     background-color: maroon;
     color: cyan;
 }
+
+a:link{
+    color: palevioletred;
+}
+
+a:visited{
+    color: greenyellow;
+}
