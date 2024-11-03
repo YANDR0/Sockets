@@ -1,4 +1,4 @@
-html {
+html, body {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     background-color: maroon;
     color: cyan;
@@ -24,6 +24,8 @@ a:visited{
     color: black;
     margin: auto;
     margin-top: 2px;
+    max-width: 90%;
+    overflow-wrap: break-word;
 }
 
 .left{
@@ -38,4 +40,32 @@ a:visited{
 
 .center{
     background-color: lightslategrey;
+}
+
+.date{
+    font-size: 10px;
+    color: darkslategray;
+}
+
+.title{
+    font-weight: bold;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-align: center;
+
+}
+
+.first{
+    margin-top: 10px;
+}
+
+#chatSpace{
+    overflow-y: hidden;     /*Pongo esto en scroll si quiero que salga el resto o no*/
+    margin: auto;
+    width: 80%;
+    height: 500px;
+}
+
+#temp, h1{
+    margin: auto;
+    width: fit-content;
 }

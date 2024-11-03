@@ -5,32 +5,54 @@ const username = sessionStorage.getItem("username");
 const messageInput = document.getElementById('message');
 const home = "http://localhost:3000/home";
 const chatBox = document.getElementById("chatBox");
+let last = "";
 
 if(!username){
     window.location.replace(home);
     alert("You need a username")
 }
 
-function updateChat(data){
-    const bubble = document.createElement("div");
-    const newClass = (data.type == 0)? "right" : (data.type == 1)? "left": "center";
-    bubble.className += "bubble " + newClass;
-    bubble.textContent = data.message;
+function generateElement(tag, mClass, text){
+    const element = document.createElement(tag);
+    element.className = mClass;
+    element.textContent = text;
 
-    //FALTAN LOS DATOS Y ESTILO PARA CENTRAR Y ESO
+    return element;
+}
+
+function updateChat(data){
+
+    const newClass = (data.type == 0)? "right" : (data.type == 1)? "left": "center";
+    const bubble = generateElement("div", "bubble " + newClass, "");
+
+    if(data.type == 2)
+        last = "";
+    else if(last != data.user){
+        const username = data.user;
+        last = username;
+        const title = generateElement("div", "title", username);
+        bubble.className += " first";
+        bubble.appendChild(title)
+    }
+
+    const msg = generateElement("div", "message", data.message);
+    bubble.appendChild(msg);
+
     if(data.type != 2){
-        const info = document.createElement("div");
-        info.textContent = data.user;
-        bubble.appendChild = info;
+        const date = new Date();
+        const format = date.toLocaleString('en-GB')
+        const info = generateElement("div", "date", format);
+        bubble.appendChild(info);
     }
 
     chatBox.appendChild(bubble)
+    chatBox.scrollTop = chatBox.scrollHeight;
+    bubble.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 function generateMessage(msg, type){
     data = { 
         message: msg, 
-        date: new Date(),
         user: username,
         room: roomId,
         type: type

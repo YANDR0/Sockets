@@ -12,5 +12,6 @@ document.getElementById('trigger').addEventListener('click', () => {
         <li><a href="chat/2">Sala 2</a></li>
         <li><a href="chat/3">Sala 3</a></li>
         <li><a href="chat/4">Sala 4</a></li>
+        <li><a href="chat/5">Sala 5</a></li>
     </ul>`;
 });
