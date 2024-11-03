@@ -3,12 +3,21 @@ const socket = io('/');
 const roomId = window.location.href.split('/').pop()
 const username = sessionStorage.getItem("username");
 const messageInput = document.getElementById('message');
+const home = "http://localhost:3000/home";
+const chatBox = document.getElementById("chatBox");
 
 if(!username){
-    window.location.replace("http://localhost:3000/home");
+    window.location.replace(home);
     alert("You need a username")
-} 
-var chat = []
+}
+
+function updateChat(data){
+    const bubble = document.createElement("div");
+    const newClass = (data.type == 0)? " right" : (data.type == 1)? " left": " center";
+    bubble.className += newClass;
+    bubble.textContent = data.message;
+    chatBox.appendChild(bubble)
+}
 
 function generateMessage(msg, type){
     data = { 
@@ -16,28 +25,24 @@ function generateMessage(msg, type){
         date: new Date(),
         user: username,
         room: roomId,
-        mType: type
+        type: type
     };
 
-    if(type != 2){
-        chat.push(data)
-        data = {...data, type: 1}
-    }
+    updateChat(data);
+    if(type != 2) data = {...data, type: 1}
     socket.emit('sendMessage', data);
-    console.log(chat)
 }
 
 socket.emit('joinRoom', roomId)
 generateMessage(username + " joined!", 2)
 
 socket.on('getMessage', (data) => {
-    chat.push(data)
-    console.log(chat)
+    updateChat(data)
 })
 
 window.addEventListener('beforeunload', () => {
     generateMessage(username + " left!", 2);
-    sessionStorage.clear();
+    sessionStorage.removeItem("username");
 })
 
 document.getElementById('trigger').addEventListener('click', () => {
@@ -46,7 +51,13 @@ document.getElementById('trigger').addEventListener('click', () => {
 })
 
 document.getElementById('home').addEventListener('click', () => {
-    window.location.replace("http://localhost:3000/home");
+    window.location.replace(home);
 })
+
+
+
+
+    
+
 
 

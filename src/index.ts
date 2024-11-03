@@ -26,15 +26,13 @@ const server = app.listen(port, () => {
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    //console.log('Se conecto al cliente');
 
     socket.on('joinRoom', (id) => {
-        socket.join('room-' + id)
+        socket.join('room-' + id);
     })
 
     socket.on('sendMessage', (data) => {
-
-        socket.to('room-' + data.room).emit('getMessage', data)
+        socket.to('room-' + data.room).emit('getMessage', data);
         //socket.broadcast.emit('getMessage', data);  //Todos menos yo
         //socket.to(data.room).emit(data)   Todos menos yo y room
         //io.emit(data)     Todos incluyendome
