@@ -14,4 +14,28 @@ a:visited{
 
 #home:hover{
     cursor: pointer;
+    width: fit-content;
+}
+
+.bubble{
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    margin: auto;
+    margin-top: 2px;
+}
+
+.left{
+    background-color: lightcoral;
+    margin-left: 0;
+}
+
+.right{
+    background-color: lightseagreen;
+    margin-right: 0;
+}
+
+.center{
+    background-color: lightslategrey;
 }

@@ -13,9 +13,17 @@ if(!username){
 
 function updateChat(data){
     const bubble = document.createElement("div");
-    const newClass = (data.type == 0)? " right" : (data.type == 1)? " left": " center";
-    bubble.className += newClass;
+    const newClass = (data.type == 0)? "right" : (data.type == 1)? "left": "center";
+    bubble.className += "bubble " + newClass;
     bubble.textContent = data.message;
+
+    //FALTAN LOS DATOS Y ESTILO PARA CENTRAR Y ESO
+    if(data.type != 2){
+        const info = document.createElement("div");
+        info.textContent = data.user;
+        bubble.appendChild = info;
+    }
+
     chatBox.appendChild(bubble)
 }
 
@@ -47,6 +55,8 @@ window.addEventListener('beforeunload', () => {
 
 document.getElementById('trigger').addEventListener('click', () => {
     const msg = messageInput.value;
+    if(!msg) return;
+    messageInput.value = "";
     generateMessage(msg, 0)
 })
 
