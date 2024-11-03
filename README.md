@@ -12,4 +12,5 @@ Para poder ejecutar el proyecto se debe realizar lo siguiente:
 
 Una vez hecho esto puede proceder a chatear y eso
 
-- También puede correr el comando `npm run dev` para ver el proyecto o entrar al sitio donde se hostea 
+- También puede correr el comando `npm run dev` para ver el proyecto 
+- o entrar al sitio donde se hostea https://sockets-qf6d.onrender.com
