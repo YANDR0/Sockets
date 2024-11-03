@@ -33,7 +33,6 @@ io.on('connection', (socket) => {
     })
 
     socket.on('sendMessage', (data) => {
-        console.log(data);
 
         socket.to('room-' + data.room).emit('getMessage', data)
         //socket.broadcast.emit('getMessage', data);  //Todos menos yo

@@ -11,3 +11,7 @@ a:link{
 a:visited{
     color: greenyellow;
 }
+
+#home:hover{
+    cursor: pointer;
+}
