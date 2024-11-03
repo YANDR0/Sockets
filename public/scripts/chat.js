@@ -3,7 +3,7 @@ const socket = io('/');
 const roomId = window.location.href.split('/').pop()
 const username = sessionStorage.getItem("username");
 const messageInput = document.getElementById('message');
-const home = "https://sockets-qf6d.onrender.com";
+const home = "https://sockets-qf6d.onrender.com/home";
 const chatBox = document.getElementById("chatBox");
 let last = "";
 
